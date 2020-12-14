@@ -1,6 +1,7 @@
 const User = require("../model/User");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const controller = {
   // User Creation
@@ -39,6 +40,28 @@ const controller = {
       res.sendStatus(400);
       return;
     }
+  },
+  login: async (req, res) => {
+    const { email, password } = req.body;
+    // Checking if user already exist
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      res.status(400).send("Email or password wrong");
+      return;
+    }
+
+    // Checking is password is correct
+    const isPwsValid = await bcrypt.compare(password, user.password);
+
+    if (!isPwsValid) {
+      res.status(401).send("Invalid password");
+    }
+
+    // Jwt token
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_AUTH);
+
+    res.send("loggedin");
   },
   // getAllUser: async (req, res) => {
   //   try {

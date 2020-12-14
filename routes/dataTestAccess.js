@@ -2,7 +2,8 @@
 const router = require("express").Router();
 const verifytoken = require("../verification/verifyToken");
 
-router.get("/data", verifytoken, (req, res) => {
+// Passing the verifytoken for cheching if user logged in
+router.get("/", verifytoken, (req, res) => {
   res.json({
     data: {
       object: "Secret Title",

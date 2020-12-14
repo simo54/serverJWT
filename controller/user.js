@@ -65,7 +65,7 @@ const controller = {
 
     // Jwt token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_AUTH, {
-      expiresIn: 30, //setting expiration in 30 seconds
+      expiresIn: 60, //setting expiration in 30 seconds
     });
 
     // Set header and send back token

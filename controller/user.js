@@ -35,6 +35,7 @@ const controller = {
     try {
       const newUser = await user.save();
       console.log(newUser);
+      res.send("User Registered");
     } catch (e) {
       console.log(e);
       res.sendStatus(400);
@@ -59,7 +60,9 @@ const controller = {
     }
 
     // Jwt token
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_AUTH);
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_AUTH, {
+      expiresIn: 10,
+    });
 
     res.header("authToken", token).send(token);
   },

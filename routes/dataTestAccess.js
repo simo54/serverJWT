@@ -1,3 +1,4 @@
+// Test Route to check if authentication works
 const router = require("express").Router();
 const verifytoken = require("../verification/verifyToken");
 

@@ -1,20 +1,24 @@
+// Importing DB config
 require("./dbConfig");
+
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
-
+const dotenv = require("dotenv");
 dotenv.config();
-
+const port = process.env.PORT || 5000;
 // Routes
-const authRoute = require("./routes/auth");
 const dataRoute = require("./routes/dataTestAccess");
+const signupRoute = require("./routes/signup");
+const loginRoute = require("./routes/login&auth");
 
+// BodyParsers Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Middleware Routes
-app.use("/user", authRoute);
+app.use("/signup", signupRoute);
+app.use("/login", loginRoute);
 app.use("/private", dataRoute);
 
-app.listen(5000, console.log("Server running on port 5000"));
+app.listen(port, console.log("Server running on port 5000"));

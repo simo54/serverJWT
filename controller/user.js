@@ -61,7 +61,7 @@ const controller = {
     // Jwt token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_AUTH);
 
-    res.send("loggedin");
+    res.header("authToken", token).send(token);
   },
   // getAllUser: async (req, res) => {
   //   try {

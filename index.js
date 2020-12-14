@@ -8,14 +8,13 @@ dotenv.config();
 
 // Routes
 const authRoute = require("./routes/auth");
+const dataRoute = require("./routes/dataTestAccess");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// To send body requests
-app.use(express.json());
-
 // Middleware Routes
 app.use("/user", authRoute);
+app.use("/private", dataRoute);
 
 app.listen(5000, console.log("Server running on port 5000"));

@@ -6,7 +6,7 @@ Node server with signup, login and authentication features.
 
 - Node.js
 - Express
-- MongoBD
+- MongoDB
 - Mongoose
 - JWT
 - Express-validator
